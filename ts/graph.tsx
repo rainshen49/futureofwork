@@ -5,7 +5,7 @@ import { Tag } from './Tag'
 
 export interface task {
     "title": string,
-    "authors": string[]
+    "author": string,
     "completed": boolean,
     "children"?: task[],
     "note"?: string,
@@ -16,7 +16,7 @@ export interface task {
 export function newProject(title: string, author: string): task {
     const Project = {
         title,
-        authors: [author],
+        author,
         children: [],
         note: "",
         completed: false,
@@ -38,10 +38,7 @@ export function addChildren(proj, ...children: task[]) {
     proj.children.push(...children)
 }
 export function removeChild(proj, child: task) {
-    proj.children.splice(this.children.indexOf(child))
-}
-export function addAuthor(proj, author) {
-    proj.authors.push(author)
+    proj.children.splice(proj.children.indexOf(child))
 }
 export function setNote(proj, newNote) {
     proj.note = newNote
@@ -54,10 +51,10 @@ class Task extends PureComponent<{ tsk: task }, { expanded: boolean }>{
     state = { expanded: true }
     render() {
         const { tsk } = this.props
-        const { title, authors, children, note, tags } = tsk
+        const { title, author, children, note, tags } = tsk
         return <div className="task">
             <h2>{title}</h2>
-            {authors.map(author => <Author author={author} key={author} />)}
+            <Author author={author} />
             {this.state.expanded && children.map(child => <Task tsk={child} key={child.title} />)}
             <p>{note}</p>
         </div>
@@ -66,10 +63,10 @@ class Task extends PureComponent<{ tsk: task }, { expanded: boolean }>{
 
 export function Project({ tsk: task }) {
     const { tsk } = this.props
-    const { title, authors, children, note, tags } = tsk
+    const { title, author, children, note, tags } = tsk
     return <div className="project task">
         <h2>{title}</h2>
-        {authors.map(author => <Author author={author} key={author} />)}
+        <Author author={author} />
         {children.map(child => <Task tsk={child} key={child.title} />)}
         <p>{note}</p>
         {tags.map(tag => <Tag tag={tag} key={tag} />)}

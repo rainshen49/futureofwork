@@ -5,17 +5,17 @@ import { actions, store } from "./Dataflow"
 // Show Graph
 // format of the a news content
 // tags
-export default class KB extends Component<any, { news: any[] }>{
-    state = store.getState()
+export default class KB extends PureComponent<any, any>{
+    state = store.getState().news
     componentDidMount() {
         store.subscribe(() => {
             console.log('changed')
-            this.setState(store.getState())
+            this.setState(store.getState().news)
         })
     }
 
     render() {
-        const { news } = this.state
+        const news = this.state
         return <div className="news">
             <h1>What's up</h1>
             <button onClick={() => store.dispatch(actions.fetchFeed)}>FakeFeed</button>
