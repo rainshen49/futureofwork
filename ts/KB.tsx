@@ -5,7 +5,7 @@ import { actions, store } from "./Dataflow"
 // Show Graph
 // format of the a news content
 // tags
-export default class NewsFeed extends Component<any, { news: any[] }>{
+export default class KB extends Component<any, { news: any[] }>{
     state = store.getState()
     componentDidMount() {
         store.subscribe(() => {

@@ -1,34 +1,40 @@
-## UI Components (pages)
-Todo list page:
-- todo list
-    - project list:
-        - add/delete/complete(publish)
-        - graph view for completed items
-    - an item
-        - complete
-        - drag as a dependency
-        - authors
-        - notes
+## High Level
+Todo list:
+- item
+    - complete
+    - drag as a dependency
+    - authors
+    - notes
+- publish
+    - tags
 
-Graph (edit) view component:
-- the graph itself, navigate
-- view notes
-- connect with author
-- tag
+KB:
+- search:
+    - by text
+    - by tag
+    - by authors
+    - by time
+- show KBs:
+    - list of KB with brief description
+- detail view:
+    - project graph
 
-Newsfeed/knowledge base page
-- news feed
-    - list view
-    - details view (graph view)
-- knowledge base search view
-    - list view
-    - details view (graph view)
+Profile generator
+- add tags and projects to an author profile
 
-## Control Components
-tasks -> graph
-graph -> notebook
-search of knowledge base
-newsletter of the latest knowledge base
+News Feed
+- tags subscription
+- search latest
+
+## Components
+.(D)graph interface (visualize, add tags)
+(V)Todo list
+(V)KB list display
+(V & D) Search
+(D)tag subscription
+(V)Profile view
+(D)Extract profile tags from all projects
+(D)Initial Data
 
 ## Fancy
 - full screen experience

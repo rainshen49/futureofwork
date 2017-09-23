@@ -12,6 +12,21 @@
 .news .newsdetail {
   max-height: 50rem; }
 
+.modalbg {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; }
+  .modalbg .modal {
+    margin: auto;
+    background-color: white; }
+
 * {
   box-shadow: 0 0 2px 0 black; }
 
@@ -25,7 +40,7 @@ html, body, #app, #app > div {
   padding: 0; }
 
 #app {
-  --nav-height:5rem; }
+  --nav-height:3rem; }
 
 main {
   display: flex;
@@ -39,6 +54,7 @@ nav {
   height: var(--nav-height); }
   nav > a {
     flex: 1;
-    text-align: center; }
+    text-align: center;
+    line-height: var(--nav-height); }
 
 /*# sourceMappingURL=index.css.map */

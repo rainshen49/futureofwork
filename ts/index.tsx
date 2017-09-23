@@ -2,19 +2,17 @@ import * as React from "react"
 import { PureComponent } from 'react'
 import { render } from "react-dom"
 import { $ } from './$'
-import NewsFeed from "./NewsFeed"
+import KB from "./KB"
 import Todo from './Todo'
+import Opportunity from './Opportunity'
 
-class App extends PureComponent<{ items: {[any:string]:any} }, any> {
+class App extends PureComponent<{ items: { [any: string]: any } }, any> {
     // default render the news page
-    state = { Page: this.props.items.NewsFeed }
+    state = { Page: this.props.items.Project }
     render() {
         const { items } = this.props
         const { Page } = this.state
         return <div>
-            <main>
-                <Page />
-            </main>
             <nav>
                 {
                     Object.keys(items).map(name =>
@@ -22,8 +20,11 @@ class App extends PureComponent<{ items: {[any:string]:any} }, any> {
                     )
                 }
             </nav>
+            <main>
+                <Page />
+            </main>
         </div>
     }
 }
 
-render(<App items={{ NewsFeed, Todo }} />, $('#app'))
+render(<App items={{ Project: Todo, Explore: KB, Opportunity }} />, $('#app'))
