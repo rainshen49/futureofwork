@@ -1,0 +1,11 @@
+{
+    "title": "string",
+    "children": [
+        "..."
+    ],
+    "authors": [
+        "string"
+    ],
+    "note": "string",
+    "completed": false
+}

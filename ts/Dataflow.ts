@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-
+// Todo, actually fetch feed
 function reducer(prevState = { news: [] }, action) {
     const state = prevState
     switch (action.type) {

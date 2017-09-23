@@ -3,7 +3,8 @@ import { PureComponent, Component } from 'react'
 import { actions, store } from "./Dataflow"
 // Todo
 // Show Graph
-// format of the newsfeed
+// format of the a news content
+// tags
 export default class NewsFeed extends Component<any, { news: any[] }>{
     state = store.getState()
     componentDidMount() {
