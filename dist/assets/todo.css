@@ -1,4 +1,7 @@
 .item.completed {
   opacity: 0.4; }
 
+.dragger {
+  cursor: move; }
+
 /*# sourceMappingURL=todo.css.map */

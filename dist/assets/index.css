@@ -30,6 +30,9 @@
 .item.completed {
   opacity: 0.4; }
 
+.dragger {
+  cursor: move; }
+
 * {
   box-shadow: 0 0 2px 0 black; }
 

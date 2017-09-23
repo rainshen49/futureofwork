@@ -1,10 +1,11 @@
 ## High Level
 Todo list:
 - item
-    - complete
+    - complete v
     - drag as a dependency
     - authors
     - notes
+    - detailsView
 - publish
     - tags
 

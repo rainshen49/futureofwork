@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,eAAe;EACX,OAAO,EAAE,GAAG",
+"mappings": "AACA,eAAe;EACX,OAAO,EAAE,GAAG;;AAEhB,QAAQ;EACJ,MAAM,EAAE,IAAI",
 "sources": ["../../sass/todo.scss"],
 "names": [],
 "file": "todo.css"

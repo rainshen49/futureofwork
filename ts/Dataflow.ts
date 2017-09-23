@@ -1,6 +1,6 @@
 import { Author } from './Author';
 import { createStore } from 'redux'
-import { newProject, task, complete, cancel, removeChild } from './graph'
+import { newProject, task, complete, cancel, removeChild, addChild } from './graph'
 interface StoreState {
     news?: any[],
     project?: task,
@@ -21,7 +21,7 @@ const initialState: StoreState = {
     }
 }
 
-initialState.project.children = [newProject("Whip cream", initialState.project.author)]
+initialState.project.children = [newProject("Whip cream", initialState.project.author), newProject("Whip more cream", initialState.project.author)]
 
 function reducer(prevState: StoreState = initialState, action: { [any: string]: any }) {
     const state: StoreState = prevState
@@ -36,6 +36,7 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
                 tags: ["react", "pancake"],
                 email: "slk49@live.cn"
             }
+            break;
         }
         case "addItem": {
             project.children.push(newProject(action.title, project.author))
@@ -69,8 +70,23 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
                     target = child
                 }
             })
-            console.log(title,'target',target)
+            console.log(title, 'target', target)
             removeChild(project, target)
+            break;
+        }
+        case "subItem": {
+            const { parent, child } = action
+            if (parent === child) throw "cannot be the same item"
+            let parentitem, childitem;
+            project.children.forEach(ch => {
+                if (ch.title === parent) {
+                    parentitem = ch
+                } else if (ch.title === child) {
+                    childitem = ch
+                }
+            })
+            addChild(parentitem, childitem)
+            removeChild(project, childitem)
             break;
         }
     }
@@ -92,6 +108,11 @@ const projectActions = {
     "deleteItem": {
         type: "deleteItem",
         title: ""
+    },
+    "subItem": {
+        type: "subItem",
+        parent: "",
+        child: ""
     }
 }
 

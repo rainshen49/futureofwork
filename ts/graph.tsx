@@ -34,11 +34,11 @@ export function cancel(proj) {
 export function setitle(proj, newTitle) {
     proj.title = newTitle
 }
-export function addChildren(proj, ...children: task[]) {
-    proj.children.push(...children)
+export function addChild(proj, child: task) {
+    proj.children.push(child)
 }
 export function removeChild(proj, child: task) {
-    proj.children.splice(proj.children.indexOf(child))
+    proj.children.splice(proj.children.indexOf(child),1)
 }
 export function setNote(proj, newNote) {
     proj.note = newNote

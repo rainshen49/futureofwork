@@ -6,7 +6,7 @@ import { store, actions } from './Dataflow'
 
 class Todoitem extends Component<{ item: task }, any>{
     submitEdit(ev) {
-        const newname = ev.target.textContent.replace(/\n/g,"")
+        const newname = ev.target.textContent.replace(/\n/g, "")
         if (ev.key === "Enter") {
             ev.preventDefault()
             ev.stopPropagation()
@@ -14,19 +14,36 @@ class Todoitem extends Component<{ item: task }, any>{
         }
     }
     onCheck(ev) {
-        console.log(ev.target.checked,'checked')
+        console.log(ev.target.checked, 'checked')
         store.dispatch({ ...actions.checkItem, title: this.props.item.title, done: ev.target.checked })
     }
     remove() {
         store.dispatch({ ...actions.deleteItem, title: this.props.item.title })
     }
+    pickup(ev) {
+        console.log('picked up')
+        ev.dataTransfer.setData("text", this.props.item.title);
+    }
+    over(ev) {
+        ev.preventDefault();
+    }
+    drop(ev) {
+        ev.preventDefault();
+        const title = ev.dataTransfer.getData("text")
+        store.dispatch({ ...actions.subItem, child: title, parent: this.props.item.title })
+    }
     render() {
         const { item } = this.props
-        return <div className={"item" + (item.completed ? " completed" : "")}>
+        return <div className={"item" + (item.completed ? " completed" : "")}
+            onDragOver={ev => this.over(ev)}
+            onDrop={(ev) => this.drop(ev)}>
             <input type="checkbox" name={item.title} checked={item.completed} onClick={ev => this.onCheck(ev)} />
             <p contentEditable onKeyUp={(ev) => this.submitEdit(ev)}>{item.title}</p>
             <button>Note</button>
             <button onClick={() => this.remove()}>Remove</button>
+            <img className="dragger" src="http://www.iconninja.com/files/741/109/210/tree-icon.png"
+                onDragStart={(ev) => this.pickup(ev)}
+            ></img>
         </div>
     }
 }
