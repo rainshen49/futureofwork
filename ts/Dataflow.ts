@@ -59,6 +59,7 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
                     else cancel(child)
                 }
             })
+            break;
         }
         case "deleteItem": {
             const { title } = action
@@ -70,6 +71,7 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
             })
             console.log(title,'target',target)
             removeChild(project, target)
+            break;
         }
     }
     return state
