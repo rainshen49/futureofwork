@@ -1,0 +1,70 @@
+@import '_config.scss';
+// Reset font value to handle rem units
+html {
+	font-size: 62.5%;
+}
+body {
+	font-family: $primary-font !important;
+	// Explicitly set font size for the body.
+	font-size: 1.45em;
+}
+/* Small reset */
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 400;
+}
+.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:first-child>.btn-group:not(:first-child)>.btn, .input-group-btn:first-child>.btn:not(:first-child), .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn, .input-group-btn:last-child>.dropdown-toggle, .collapse > .well, .dropdown-menu,.modal-content,
+* {
+	border-radius: 0;
+}
+*:focus {
+	outline: none;
+}
+a {
+	color: $primary-blue;
+	&:hover{
+		color: $primary-blue;
+		text-decoration: underline;
+	}
+}
+sup {
+	top: -8px!important;
+}
+// Hide ms-expand
+select::-ms-expand {
+	display: none;
+}
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+.focus {
+	@include focus();
+}
+// Fall-backs for ie8, ie9. Overwrites Bootstrap
+.ie8 .input-group select {
+	padding-top: 10px;
+}
+.ie8 .input-group input {
+	padding-top: 10px;
+}
+.ie8 .formBlock select,
+.ie8 select.form-control {
+	background:none;
+	background-image: none;
+	background-color: #fff;
+}
+.ie8 select.form-control {
+	padding-bottom: 12px;
+	padding-right: 10px;
+}
+.ie9 .formBlock select,
+.ie9 select.form-control {
+	background:none;
+	background-image: none;
+	background-color: #fff;
+}
+.ie9 select.form-control {
+	padding-bottom: 6px;
+	padding-right: 10px;
+}

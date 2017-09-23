@@ -1,0 +1,31 @@
+@import '_config.scss';
+body {
+	font-family: $primary-font;
+}
+/* Small reset */
+a {
+	color: $primary-blue;
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+.focus {
+	@include focus();
+}
+
+.input-group select {
+	padding-top: 10px;
+}
+.input-group input {
+	padding-top: 10px;
+}
+select.form-control {
+	background:none;
+	background-image: none;
+	background-color: #fff;
+}
