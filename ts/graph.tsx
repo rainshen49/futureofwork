@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PureComponent } from 'react'
+import { PureComponent, Component } from 'react'
 import { Author } from './Author'
 import { Tag } from './Tag'
 import { store, actions } from './Dataflow'
@@ -62,13 +62,20 @@ class Task extends PureComponent<{ tsk: task }, { expanded: boolean }>{
     }
 }
 
+class Project extends Component<any, any> {
+    state = store.getState().project
+    render() {
+        const { title, author, children, note, tags } = this.state
+        return <div className="project task">
+            <h2>{title}</h2>
+            <Author author={author} />
+            {children.map(child => <Task tsk={child} key={child.title} />)}
+            <p>{note}</p>
+            {tags.map(tag => <Tag tag={tag} key={tag} />)}
+        </div>
+    }
+}
+
 export function Overview() {
-    const { title, author, children, note, tags } = store.getState().project
-    return <div className="project task">
-        <h2>{title}</h2>
-        <Author author={author} />
-        {children.map(child => <Task tsk={child} key={child.title} />)}
-        <p>{note}</p>
-        {tags.map(tag => <Tag tag={tag} key={tag} />)}
-    </div>
+    return <Project />
 }
