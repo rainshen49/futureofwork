@@ -52,7 +52,7 @@ class TodoList extends Component<any, any> {
     state = { children: store.getState().project.children }
     newtitle = ""
     componentDidMount() {
-        store.subscribe(() =>
+        this.componentWillUnmount = store.subscribe(() =>
             this.setState({ children: store.getState().project.children })
         )
     }
@@ -81,9 +81,9 @@ class TodoList extends Component<any, any> {
 }
 
 export default class Todo extends PureComponent<any, task>{
-    state = {...store.getState().project}
+    state = { ...store.getState().project }
     componentDidMount() {
-        store.subscribe(() => this.setState(store.getState().project))
+        this.componentWillUnmount = store.subscribe(() => this.setState(store.getState().project))
     }
     render() {
         const { author, children, title } = this.state

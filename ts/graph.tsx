@@ -62,20 +62,40 @@ class Task extends PureComponent<{ tsk: task }, { expanded: boolean }>{
     }
 }
 
-class Project extends Component<any, any> {
-    state = store.getState().project
+export class Project extends Component<task, any> {
+    addTag(ev) {
+        if (ev.key === "Enter") {
+            const newtag = ev.target.value
+            ev.target.value = ""
+            store.dispatch({ ...actions.addTag, newtag })
+        }
+    }
+    publish() {
+        store.dispatch(actions.publish)
+    }
     render() {
-        const { title, author, children, note, tags } = this.state
+        const { title, author, children, note, tags } = this.props
         return <div className="project task">
             <h2>{title}</h2>
+            <button onClick={() => this.publish()}>Publish</button>
+            <button>Save</button>
             <Author author={author} />
+            {tags.map(tag => <Tag tag={tag} key={tag} />)}
+            <input type="text" name="newtag" placeholder="new tag" onKeyUp={(ev) => this.addTag(ev)} />
             {children.map(child => <Task tsk={child} key={child.title} />)}
             <p>{note}</p>
-            {tags.map(tag => <Tag tag={tag} key={tag} />)}
         </div>
     }
 }
 
-export function Overview() {
-    return <Project />
+export class Overview extends Component<any, task>{
+    state = store.getState().project
+    componentDidMount() {
+        this.componentWillUnmount = store.subscribe(() => {
+            this.setState(store.getState().project)
+        })
+    }
+    render() {
+        return <Project {...this.state} />
+    }
 }

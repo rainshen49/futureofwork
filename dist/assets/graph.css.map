@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,KAAK;EACL,OAAO,EAAE,IAAI;;AAEb,QAAQ;EACJ,QAAQ,EAAE,IAAI",
+"mappings": "AAAA,KAAK;EACD,OAAO,EAAE,IAAI",
 "sources": ["../../sass/graph.scss"],
 "names": [],
 "file": "graph.css"

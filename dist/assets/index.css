@@ -22,7 +22,8 @@
   margin: 0;
   padding: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex; }
+  display: flex;
+  overflow: auto; }
   .modalbg .modal {
     margin: auto;
     background-color: white; }
@@ -36,11 +37,9 @@
 .task {
   padding: 1rem; }
 
-.project {
-  overflow: auto; }
-
 * {
-  box-shadow: 0 0 2px 0 black; }
+  box-shadow: 0 0 2px 0 black;
+  -webkit-overflow-scrolling: touch; }
 
 html {
   font-family: Arial, sans-serif; }
@@ -58,7 +57,8 @@ main {
   display: flex;
   height: calc(100% - var(--nav-height)); }
   main > div {
-    flex: 1; }
+    flex: 1;
+    overflow: auto; }
 
 nav {
   display: flex;

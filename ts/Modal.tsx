@@ -12,7 +12,7 @@ export class Modal extends PureComponent<{ children: any, exit: Function }, any>
     }
     render() {
         const { children } = this.props
-        return <div className="modalbg" onClick={(ev) => this.bgClick(ev)}>
+        return <div className="modalbg" onClick={(ev) => this.bgClick(ev)} onScroll={ev=>ev.stopPropagation()}>
             <div className="modal" onClick={(ev) => this.insideClick(ev)}>
                 {...children}
             </div>

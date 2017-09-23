@@ -7,25 +7,24 @@ Todo list:
     - notes
 
 - publish
-    - tags
+    - tags v
 
 KB:
-- search:
+- search: v
     - by text
     - by tag
     - by authors
-    - by time
 - show KBs:
-    - list of KB with brief description
+    - list of KB with brief description v
 - detail view:
-    - project graph
+    - project graph v
 
 Profile generator
-- add tags and projects to an author profile
+- add tags and projects to an author profile v
 
-News Feed
-- tags subscription
-- search latest
+Opportunity
+- profiles v
+- interesting projects v
 
 ## Components
 .(D)graph interface (visualize, add tags)
