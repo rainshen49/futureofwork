@@ -2,10 +2,10 @@
 Todo list:
 - item
     - complete v
-    - drag as a dependency
+    - drag as a dependency v
     - authors
     - notes
-    - detailsView
+
 - publish
     - tags
 

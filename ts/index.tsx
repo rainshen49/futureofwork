@@ -5,6 +5,7 @@ import { $ } from './$'
 import KB from "./KB"
 import Todo from './Todo'
 import Opportunity from './Opportunity'
+import { Overview } from './Graph'
 
 class App extends PureComponent<{ items: { [any: string]: any } }, any> {
     // default render the news page
@@ -27,4 +28,4 @@ class App extends PureComponent<{ items: { [any: string]: any } }, any> {
     }
 }
 
-render(<App items={{ Project: Todo, Explore: KB, Opportunity }} />, $('#app'))
+render(<App items={{ Project: Todo, Explore: KB, Opportunity, Overview }} />, $('#app'))

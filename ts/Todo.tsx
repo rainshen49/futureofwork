@@ -81,7 +81,7 @@ class TodoList extends Component<any, any> {
 }
 
 export default class Todo extends PureComponent<any, task>{
-    state = store.getState().project
+    state = {...store.getState().project}
     componentDidMount() {
         store.subscribe(() => this.setState(store.getState().project))
     }

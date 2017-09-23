@@ -33,6 +33,12 @@
 .dragger {
   cursor: move; }
 
+.task {
+  padding: 1rem; }
+
+.project {
+  overflow: auto; }
+
 * {
   box-shadow: 0 0 2px 0 black; }
 

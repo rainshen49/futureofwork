@@ -2,6 +2,7 @@ import * as React from 'react'
 import { PureComponent } from 'react'
 import { Author } from './Author'
 import { Tag } from './Tag'
+import { store, actions } from './Dataflow'
 
 export interface task {
     "title": string,
@@ -38,7 +39,7 @@ export function addChild(proj, child: task) {
     proj.children.push(child)
 }
 export function removeChild(proj, child: task) {
-    proj.children.splice(proj.children.indexOf(child),1)
+    proj.children.splice(proj.children.indexOf(child), 1)
 }
 export function setNote(proj, newNote) {
     proj.note = newNote
@@ -54,16 +55,15 @@ class Task extends PureComponent<{ tsk: task }, { expanded: boolean }>{
         const { title, author, children, note, tags } = tsk
         return <div className="task">
             <h2>{title}</h2>
-            <Author author={author} />
+            {/* <Author author={author} /> */}
             {this.state.expanded && children.map(child => <Task tsk={child} key={child.title} />)}
             <p>{note}</p>
         </div>
     }
 }
 
-export function Project({ tsk: task }) {
-    const { tsk } = this.props
-    const { title, author, children, note, tags } = tsk
+export function Overview() {
+    const { title, author, children, note, tags } = store.getState().project
     return <div className="project task">
         <h2>{title}</h2>
         <Author author={author} />

@@ -1,6 +1,6 @@
 import { Author } from './Author';
 import { createStore } from 'redux'
-import { newProject, task, complete, cancel, removeChild, addChild } from './graph'
+import { newProject, task, complete, cancel, removeChild, addChild } from './Graph'
 interface StoreState {
     news?: any[],
     project?: task,
