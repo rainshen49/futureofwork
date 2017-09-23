@@ -1,0 +1,20 @@
+.news{
+    .newsbrief,.newsdetail{
+        transition: max-height 0.3s ease;
+        overflow: hidden;
+        padding: 1rem;
+        h1,h2,h3,h4{
+            margin: 0;
+        }
+    }
+    .newsbrief{
+        max-height: 10rem;
+        h1,h2,h3,h4{
+            display: inline-flex;
+            padding: 0 1rem 0 0;
+        }
+    }
+    .newsdetail{
+        max-height: 50rem;
+    }
+}

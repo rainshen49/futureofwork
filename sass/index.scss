@@ -1,11 +1,13 @@
 // Store here font family, colors, etc.
 @import 'colors.scss';
+@import 'news.scss';
 // @import 'mixins.scss';
 // @import 'reset.scss';
 
 // dev only
-*{
-    box-shadow: 0 0 0 1px black;
+
+* {
+    box-shadow: 0 0 2px 0 black;
 }
 html{
     font-family: $primary-font;

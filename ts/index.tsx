@@ -5,8 +5,9 @@ import { $ } from './$'
 import NewsFeed from "./NewsFeed"
 import Todo from './Todo'
 
-class App extends PureComponent<{ items: {} }, any> {
-    state = { Page: () => <div></div> }
+class App extends PureComponent<{ items: {[any:string]:any} }, any> {
+    // default render the news page
+    state = { Page: this.props.items.NewsFeed }
     render() {
         const { items } = this.props
         const { Page } = this.state
@@ -25,4 +26,4 @@ class App extends PureComponent<{ items: {} }, any> {
     }
 }
 
-render(<App items={{ NewsFeed,Todo }} />, $('#app'))
+render(<App items={{ NewsFeed, Todo }} />, $('#app'))
