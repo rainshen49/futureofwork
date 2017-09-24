@@ -31,4 +31,4 @@ class App extends PureComponent<{ items: { [any: string]: any } }, any> {
     }
 }
 
-render(<App items={{ Project: Todo, Overview, Explore: KB, Opportunity }} />, $('#app'))
+render(<App items={{ Project: Todo, Overview, Explore: KB, Connect: Opportunity }} />, $('#app'))
