@@ -16,7 +16,7 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-    project: newProject("Make pancake", "Lingkai Shen"),
+    project: newProject("Make Green Tea Frappacino", "Lingkai Shen"),
     currentAuthor: {
         tags: ['cook', 'react'],
         email: "slk49@live.cn",
@@ -114,6 +114,8 @@ const initialState: StoreState = {
         }
     ]
 }
+
+addChild(initialState.project,newProject("Matcha tea","Lingkai Shen"))
 
 
 function reducer(prevState: StoreState = initialState, action: { [any: string]: any }) {

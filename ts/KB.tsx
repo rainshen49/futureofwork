@@ -34,14 +34,18 @@ class Search extends Component<{ projects: task[], switchMode: Function }, { res
     state = { results: [] }
     realTimeResult(ev) {
         const criteria = ev.target.value
-        const queries = parse(criteria)
-        console.log('parsed', queries)
-        if (queries.length) {
-            this.setState({
-                results: queries.reduce((prev, curr) => {
-                    return searchTop(prev, curr)
-                }, this.props.projects)
-            })
+        if(criteria===""){
+            this.stopSearch()
+        }else{
+            const queries = parse(criteria)
+            console.log('parsed', queries)
+            if (queries.length) {
+                this.setState({
+                    results: queries.reduce((prev, curr) => {
+                        return searchTop(prev, curr)
+                    }, this.props.projects)
+                })
+            }
         }
     }
     startSearch() {
@@ -55,9 +59,8 @@ class Search extends Component<{ projects: task[], switchMode: Function }, { res
         const { results } = this.state
         return <div className="search">
             <div className="searchbar">
-            <input type="text" placeholder="field1=RegExp\&field2=RegExp..."
-                onInput={ev => this.realTimeResult(ev)} onClick={() => this.startSearch()}
-                onBlur={() => this.stopSearch()} />
+                <input type="text" placeholder="field1=RegExp\&field2=RegExp..."
+                    onInput={ev => this.realTimeResult(ev)} onClick={() => this.startSearch()} />
                 <img src="https://www.rbcroyalbank.com/dvl/v0.1/assets/images/ui/ui-search-thin-blue.svg" alt="Search" />
             </div>
             <div className="results">
