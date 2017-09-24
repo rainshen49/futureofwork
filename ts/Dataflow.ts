@@ -16,14 +16,90 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-    project: newProject("Make Green Tea Frappcino", "Lingkai Shen"),
+    project: newProject("Make pancake", "Lingkai Shen"),
     currentAuthor: {
         tags: ['cook', 'react'],
         email: "slk49@live.cn",
         name: "Lingkai Shen"
     },
     knowledgebase: [
-        { "title": "Make waffle", "author": "Team Remi", "children": [{ "title": "pour onto the waffle iron, wait 2min", "author": "Team Remi", "children": [{ "title": "mix flour, baking powder, eggs etc", "author": "Team Remi", "children": [], "note": "", "completed": true, "tags": [] }, { "title": "whip cream", "author": "Team Remi", "children": [], "note": "Use an electronic whisk to whip 35% cream until it becomes puffy", "completed": true, "tags": [] }], "note": "", "completed": true, "tags": [] }], "note": "Need electronic whisk and waffle iron", "completed": false, "tags": ["breakfast", "react"] }
+        { "title": "Make waffle", "author": "Team Remi", "children": [{ "title": "pour onto the waffle iron, wait 2min", "author": "Team Remi", "children": [{ "title": "mix flour, baking powder, eggs etc", "author": "Team Remi", "children": [], "note": "", "completed": true, "tags": [] }, { "title": "whip cream", "author": "Team Remi", "children": [], "note": "Use an electronic whisk to whip 35% cream until it becomes puffy", "completed": true, "tags": [] }], "note": "", "completed": true, "tags": [] }], "note": "Need electronic whisk and waffle iron", "completed": false, "tags": ["breakfast", "react"] },
+        {
+            "title": "How to build ReBCipe",
+            "author": "Lingkai Shen",
+            "children": [
+                {
+                    "title": "get ready for demo",
+                    "author": "Lingkai Shen",
+                    "children": [
+                        {
+                            "title": "implement components",
+                            "author": "Lingkai Shen",
+                            "children": [
+                                {
+                                    "title": "break down components",
+                                    "author": "Lingkai Shen",
+                                    "children": [],
+                                    "note": "",
+                                    "completed": true,
+                                    "tags": []
+                                },
+                                {
+                                    "title": "setup environment",
+                                    "author": "Lingkai Shen",
+                                    "children": [
+                                        {
+                                            "title": "learn redux",
+                                            "author": "Lingkai Shen",
+                                            "children": [],
+                                            "note": "",
+                                            "completed": true,
+                                            "tags": []
+                                        },
+                                        {
+                                            "title": "webpack with hot reload",
+                                            "author": "Lingkai Shen",
+                                            "children": [],
+                                            "note": "",
+                                            "completed": true,
+                                            "tags": []
+                                        },
+                                        {
+                                            "title": "sass",
+                                            "author": "Lingkai Shen",
+                                            "children": [],
+                                            "note": "",
+                                            "completed": true,
+                                            "tags": []
+                                        },
+                                        {
+                                            "title": "react",
+                                            "author": "Lingkai Shen",
+                                            "children": [],
+                                            "note": "",
+                                            "completed": true,
+                                            "tags": []
+                                        }
+                                    ],
+                                    "note": "",
+                                    "completed": true,
+                                    "tags": []
+                                }
+                            ],
+                            "note": "",
+                            "completed": true,
+                            "tags": []
+                        }
+                    ],
+                    "note": "",
+                    "completed": true,
+                    "tags": []
+                }
+            ],
+            "note": "",
+            "completed": false,
+            "tags": []
+        }
     ],
     interestingAuthors: [
         {
@@ -39,7 +115,6 @@ const initialState: StoreState = {
     ]
 }
 
-addChild(initialState.project, newProject("Matcha tea", initialState.currentAuthor.name))
 
 function reducer(prevState: StoreState = initialState, action: { [any: string]: any }) {
     const state: StoreState = prevState
@@ -124,8 +199,8 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
         }
         case "importProject": {
             const { children } = action
-            children.forEach(child=>{
-                addChild(state.project,child)
+            children.forEach(child => {
+                addChild(state.project, child)
             })
             break;
         }

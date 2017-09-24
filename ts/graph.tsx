@@ -86,8 +86,8 @@ export class Project extends Component<any, any> {
         this.setState({ published: true })
     }
     import(){
-        $('a[href="#Project"]').click()
         store.dispatch({...actions.importProject,children:importProject(this.props)})
+        setTimeout(()=>$('a[href="#Project"]').click(),100)
     }
     render() {
         const { title, author, children, note, tags,mode="local" } = this.props as any
