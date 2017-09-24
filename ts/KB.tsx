@@ -55,12 +55,18 @@ class Search extends Component<{ projects: task[], switchMode: Function }, { res
         this.props.switchMode(false)
         this.setState({ results: [] })
     }
+    maybeStopSearch(ev){
+        if(ev.target.value===""){
+            this.stopSearch()
+        }
+    }
     render() {
         const { results } = this.state
         return <div className="search">
             <div className="searchbar">
                 <input type="text" placeholder="field1=RegExp\&field2=RegExp..."
-                    onInput={ev => this.realTimeResult(ev)} onClick={() => this.startSearch()} />
+                    onInput={ev => this.realTimeResult(ev)} onClick={() => this.startSearch()} 
+                    onBlur={ev=>this.maybeStopSearch(ev)}/>
                 <img src="https://www.rbcroyalbank.com/dvl/v0.1/assets/images/ui/ui-search-thin-blue.svg" alt="Search" />
             </div>
             <div className="results">
