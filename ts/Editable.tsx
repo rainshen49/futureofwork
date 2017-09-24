@@ -12,5 +12,5 @@ export function Editable({ save, children }) {
             console.log(newname,"saved")
         }
     }
-    return <p contentEditable onKeyDown={input}>{children}</p>
+    return <p onKeyDown={input}>{children}</p>
 }

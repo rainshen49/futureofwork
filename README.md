@@ -11,3 +11,7 @@ Learn redux
 - fix explore publishable bug v
 - make scrolling better on mobile
 - abstractise contenteeditable P v
+
+- fix waffle import
+- green tea frapp
+- auto next click demo
