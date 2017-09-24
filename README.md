@@ -7,5 +7,7 @@ Setup env
     - hot reload
     - react external
     - sass
-Learn Firebase non-sql storage
 Learn redux
+- fix explore publishable bug v
+- make scrolling better on mobile
+- abstractise contenteeditable P v

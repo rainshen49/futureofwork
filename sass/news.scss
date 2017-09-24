@@ -5,7 +5,7 @@
     }
     .newsbrief,.newsdetail{
         transition: max-height 0.3s ease;
-        overflow: hidden;
+        overflow: auto;        
         padding: 1rem;
         h1,h2,h3,h4{
             margin: 0;
@@ -30,6 +30,9 @@
         box-shadow: inset 0 0 0 2px #e8cf00;             
     }
     .newsdetail{
-        max-height: 50rem;
+        max-height: 100%;
+        button.primary{
+            width: 98%;
+        }
     }
 }

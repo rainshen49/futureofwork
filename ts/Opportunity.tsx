@@ -13,7 +13,7 @@ export default class Opportunity extends PureComponent<any,any>{
                 <p>Connect with recommendation algorithm of 10k Coffee</p>
             </div>
             <div>
-                <h2>Teams that demand your skills</h2>
+                <h2>Upcoming projects that demand your skills</h2>
                 <p>Connect with RBC internal job posting</p>
             </div>
         </div>

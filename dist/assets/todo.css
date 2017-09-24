@@ -7,7 +7,8 @@
   align-items: center;
   padding: 0.5rem;
   box-shadow: 0 0 1px 1px #003598;
-  margin: 0.5rem 2px; }
+  margin: 0.5rem 2px;
+  animation: showup 0.3s ease forwards; }
   .item > * {
     height: 1.5rem;
     line-height: 1.5rem;
@@ -18,9 +19,15 @@
     width: 100%; }
   .item i {
     cursor: pointer; }
+  .item.fading {
+    animation: fadeout 0.3s ease forwards; }
 
 .dragger {
+  transition: all 0.3s ease;
   cursor: move; }
+  .dragger.afloat {
+    position: fixed;
+    transform: scale(1.5); }
 
 .todolists > i {
   margin: auto 1rem auto auto; }
@@ -30,5 +37,16 @@
   display: inline-block;
   margin: 0;
   padding: 0; }
+
+@keyframes showup {
+  from {
+    transform: translateY(-100%); }
+  to {
+    transform: translateY(0); } }
+@keyframes fadeout {
+  from {
+    transform: scaleY(1); }
+  to {
+    transform: scaleY(0); } }
 
 /*# sourceMappingURL=todo.css.map */

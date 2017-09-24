@@ -2,7 +2,7 @@
   text-align: center; }
 .news .newsbrief, .news .newsdetail {
   transition: max-height 0.3s ease;
-  overflow: hidden;
+  overflow: auto;
   padding: 1rem; }
   .news .newsbrief h1, .news .newsbrief h2, .news .newsbrief h3, .news .newsbrief h4, .news .newsdetail h1, .news .newsdetail h2, .news .newsdetail h3, .news .newsdetail h4 {
     margin: 0; }
@@ -21,7 +21,9 @@
 .news .newsbrief:hover:not(:active) {
   box-shadow: inset 0 0 0 2px #e8cf00; }
 .news .newsdetail {
-  max-height: 50rem; }
+  max-height: 100%; }
+  .news .newsdetail button.primary {
+    width: 98%; }
 
 .tag {
   margin: 1rem;
@@ -85,7 +87,8 @@
   align-items: center;
   padding: 0.5rem;
   box-shadow: 0 0 1px 1px #003598;
-  margin: 0.5rem 2px; }
+  margin: 0.5rem 2px;
+  animation: showup 0.3s ease forwards; }
   .item > * {
     height: 1.5rem;
     line-height: 1.5rem;
@@ -96,9 +99,15 @@
     width: 100%; }
   .item i {
     cursor: pointer; }
+  .item.fading {
+    animation: fadeout 0.3s ease forwards; }
 
 .dragger {
+  transition: all 0.3s ease;
   cursor: move; }
+  .dragger.afloat {
+    position: fixed;
+    transform: scale(1.5); }
 
 .todolists > i {
   margin: auto 1rem auto auto; }
@@ -109,6 +118,16 @@
   margin: 0;
   padding: 0; }
 
+@keyframes showup {
+  from {
+    transform: translateY(-100%); }
+  to {
+    transform: translateY(0); } }
+@keyframes fadeout {
+  from {
+    transform: scaleY(1); }
+  to {
+    transform: scaleY(0); } }
 .task:not(.project) {
   padding: 1rem;
   margin: 0.5rem;
@@ -122,6 +141,7 @@
     width: 100%; }
 
 .project {
+  padding: 1rem;
   border: 1px solid #FEDF01;
   border-radius: 1rem; }
   .project > h1 {
@@ -197,6 +217,9 @@ html, body, #app, #app > div {
   margin: 0;
   padding: 0; }
 
+body, #app {
+  overflow: hidden; }
+
 #app {
   --nav-height: 3.12rem; }
 
@@ -208,6 +231,9 @@ main {
     flex: 1;
     overflow: auto; }
 
+@media screen and (max-width: 48rem) {
+  main {
+    padding: 0.1rem; } }
 nav {
   display: flex;
   justify-content: space-around;

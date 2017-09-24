@@ -22,7 +22,7 @@ export class News extends PureComponent<task, { expand: boolean }>{
             {!expand && <Author author={author} />}
             {!expand && tags.map(tag => <Tag tag={tag} key={tag} />)}
             {!expand && <p>{note}</p>}
-            {expand && <Project {...this.props} />}
+            {expand && <Project {...this.props} mode="online" />}
         </div>
     }
     maybeExpand(really) {

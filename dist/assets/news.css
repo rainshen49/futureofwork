@@ -2,7 +2,7 @@
   text-align: center; }
 .news .newsbrief, .news .newsdetail {
   transition: max-height 0.3s ease;
-  overflow: hidden;
+  overflow: auto;
   padding: 1rem; }
   .news .newsbrief h1, .news .newsbrief h2, .news .newsbrief h3, .news .newsbrief h4, .news .newsdetail h1, .news .newsdetail h2, .news .newsdetail h3, .news .newsdetail h4 {
     margin: 0; }
@@ -21,6 +21,8 @@
 .news .newsbrief:hover:not(:active) {
   box-shadow: inset 0 0 0 2px #e8cf00; }
 .news .newsdetail {
-  max-height: 50rem; }
+  max-height: 100%; }
+  .news .newsdetail button.primary {
+    width: 98%; }
 
 /*# sourceMappingURL=news.css.map */

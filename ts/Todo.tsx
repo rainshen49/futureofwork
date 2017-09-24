@@ -3,26 +3,29 @@ import { PureComponent, Component } from 'react'
 import { Author } from './Author'
 import { task, newProject } from './graph'
 import { store, actions } from './Dataflow'
+import { Editable } from './Editable';
 
 class Todoitem extends Component<{ item: task }, any>{
-    submitEdit(ev) {
-        const newname = ev.target.textContent.replace(/\n/g, "")
-        if (ev.key === "Enter") {
-            ev.preventDefault()
-            ev.stopPropagation()
-            store.dispatch({ ...actions.renameItem, oldname: this.props.item.title, newname })
-        }
+    state = { status: "" }
+    submitEdit(newname) {
+        store.dispatch({ ...actions.renameItem, oldname: this.props.item.title, newname })
     }
     onCheck(ev) {
         console.log(ev.target.checked, 'checked')
         store.dispatch({ ...actions.checkItem, title: this.props.item.title, done: ev.target.checked })
     }
     remove() {
-        store.dispatch({ ...actions.deleteItem, title: this.props.item.title })
+        this.setState({ status: "fading" })
+        setTimeout(() => store.dispatch({ ...actions.deleteItem, title: this.props.item.title }), 300)
+
     }
     pickup(ev) {
         console.log('picked up')
         ev.dataTransfer.setData("text", this.props.item.title);
+        ev.target.classList.add('afloat')
+    }
+    restoreinplace(ev) {
+        ev.target.classList.remove('afloat')
     }
     over(ev) {
         ev.preventDefault();
@@ -38,16 +41,36 @@ class Todoitem extends Component<{ item: task }, any>{
             store.dispatch({ ...actions.addNote, title: this.props.item.title, note })
         }
     }
+    touchstart(ev) {
+        // console.log('touhstart',ev)
+        // ev.persist()
+        ev.target.classList.add('afloat')        
+    }
+    touchmove(ev){
+        console.log('moving',ev)
+        ev.persist()
+        ev.stopPropagation()
+        ev.preventDefault()
+        const location = ev.touches[0]
+        console.log(location)
+        ev.target.style.left = location.pageX+"px";
+        ev.target.style.top = location.pageY+"px";
+    }
     render() {
         const { item } = this.props
-        return <div className={"item" + (item.completed ? " completed" : "")}
+        const { status } = this.state
+        return <div className={"item " + (item.completed ? "completed" : "") + status}
             onDragOver={ev => this.over(ev)}
             onDrop={(ev) => this.drop(ev)}>
             {item.completed && <img className="dragger" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-256.png"
                 onDragStart={(ev) => this.pickup(ev)}
+                onDragEnd={ev => this.restoreinplace(ev)}
+                onTouchStart={ev => this.touchstart(ev)}
+                onTouchMoveCapture={ev=>this.touchmove(ev)}
+                onTouchEnd={ev=>this.restoreinplace(ev)}
             ></img>}
             <input type="checkbox" name={item.title} checked={item.completed} onClick={ev => this.onCheck(ev)} />
-            <p contentEditable onKeyUp={(ev) => this.submitEdit(ev)}>{item.title}</p>
+            <Editable save={txt => this.submitEdit(txt)}>{item.title}</Editable>
             <i onClick={() => this.addNote()}>📄</i>
             <i onClick={() => this.remove()}>🗑</i>
         </div>

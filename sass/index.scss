@@ -26,6 +26,9 @@ html,body,#app, #app>div{
     margin: 0;
     padding: 0;
 }
+body,#app{
+    overflow: hidden;
+}
 #app{
     --nav-height: 3.12rem;
 }
@@ -37,6 +40,11 @@ main{
         // child fill the parent
         flex:1;
         overflow: auto;
+    }
+}
+@media screen and (max-width:48rem){
+    main{
+        padding:0.1rem;
     }
 }
 nav{

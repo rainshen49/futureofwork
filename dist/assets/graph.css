@@ -11,6 +11,7 @@
     width: 100%; }
 
 .project {
+  padding: 1rem;
   border: 1px solid #FEDF01;
   border-radius: 1rem; }
   .project > h1 {

@@ -16,7 +16,7 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-    project: newProject("Make waffle", "Lingkai Shen"),
+    project: newProject("Make frappcino", "Lingkai Shen"),
     currentAuthor: {
         tags: ['cook', 'react'],
         email: "slk49@live.cn",
@@ -39,7 +39,7 @@ const initialState: StoreState = {
     ]
 }
 
-addChild(initialState.project,newProject("Buy everyting",initialState.currentAuthor.name))
+addChild(initialState.project, newProject("Matcha tea", initialState.currentAuthor.name))
 
 function reducer(prevState: StoreState = initialState, action: { [any: string]: any }) {
     const state: StoreState = prevState
@@ -122,11 +122,22 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
             })
             break;
         }
+        case "importProject": {
+            const { children } = action
+            children.forEach(child=>{
+                addChild(state.project,child)
+            })
+            break;
+        }
     }
     return state
 }
 
 export const actions = {
+    "importProject": {
+        type: "importProject",
+        children: []
+    },
     "addItem": {
         type: "addItem",
         title: ""

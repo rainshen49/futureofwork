@@ -24,8 +24,17 @@
     i{
         cursor: pointer;
     }
+    animation: showup 0.3s ease forwards;
+    &.fading{
+        animation: fadeout 0.3s ease forwards;
+    }
 }
 .dragger{
+    &.afloat{
+        position: fixed;
+        transform: scale(1.5);
+    }
+    transition: all 0.3s ease;
     cursor: move;
 }
 .todolists{
@@ -39,5 +48,19 @@
         display: inline-block;
         margin:0;
         padding: 0;
+    }
+}
+@keyframes showup{
+    from{
+       transform: translateY(-100%);
+    }to{
+        transform: translateY(0);
+    }
+}
+@keyframes fadeout{
+    from{
+        transform: scaleY(1);
+    }to{
+        transform: scaleY(0);
     }
 }
