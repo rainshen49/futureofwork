@@ -8,10 +8,11 @@ import { searchTop } from './searcher';
 export function DetailAuthor({ author }) {
     const { tags, email } = [...store.getState().interestingAuthors, store.getState().currentAuthor]
         .filter(({ name }) => name === author)[0]
-    return <div className="detail author">
+    return <div className="authordetail">
         <h1>{author}</h1>
         {tags.map(tag => <Tag tag={tag} key={tag} />)}
         <a href={"mailto:" + email} >{email}</a>
+        <h2>Contributions:</h2>
         {getAuthorProjects(author).map(title => <div key={title}>{title}</div>)}
     </div>
 }
@@ -28,7 +29,7 @@ export class Author extends PureComponent<{ author: string }, { detail: boolean 
     render() {
         const { author } = this.props
         const { detail } = this.state
-        return <div className="author" onClick={ev => this.showDetail(ev)}>
+        return <div className={"author"} onClick={ev => this.showDetail(ev)}>
             {author.toUpperCase().split(' ').map(au => au[0])}
             {detail &&
                 <Modal exit={() => this.hide()}>

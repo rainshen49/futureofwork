@@ -1,3 +1,50 @@
-.task{
+@import "colors.scss";
+.task:not(.project){
     padding: 1rem;
+    margin: 0.5rem;
+    border: 1px solid $focus-blue;
+    border-radius: 1rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    h2{
+        width: 100%;
+    }
+}
+.project{
+    border: 1px solid $clr-brand-yellow;
+    border-radius: 1rem;
+    >h1{
+        text-align: center;
+    }
+    >button{
+        padding: 0.7rem 1rem;
+        margin: 1%;
+        width: 48%;
+        border:0;
+        font-size: 1rem;
+        cursor: pointer;
+        &.primary{
+            box-shadow: inset 0 0 0 1px #e8cf00;     
+            background-color: #fedf01;
+        }
+        &:hover{
+            background-color: #e8cf00;
+            box-shadow: inset 0 0 0 1px #b5a80c;
+        }
+    }
+    >input{
+        display: block;
+        margin:0;
+    }
+    .tag{
+        margin: 1rem 0.1rem;
+    }
+}
+.project .author{
+    display: block;
+    margin: 1rem auto;
+    background-color: $clr-brand-blue;
+    color:white;
 }

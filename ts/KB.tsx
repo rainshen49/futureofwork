@@ -6,7 +6,6 @@ import { Author } from './Author'
 import { Tag } from './Tag';
 import { Project } from './Graph'
 import { searchTop, Query, parse } from './searcher'
-import { Modal } from './Modal';
 // Todo
 // Show Graph
 // format of the a news content
@@ -31,8 +30,8 @@ export class News extends PureComponent<task, { expand: boolean }>{
     }
 }
 
-class Search extends Component<{ projects: task[] }, { results: task[], modal: boolean }>{
-    state = { results: [], modal: false, criteria: "" }
+class Search extends Component<{ projects: task[], switchMode: Function }, { results: task[] }>{
+    state = { results: [] }
     realTimeResult(ev) {
         const criteria = ev.target.value
         const queries = parse(criteria)
@@ -46,27 +45,30 @@ class Search extends Component<{ projects: task[] }, { results: task[], modal: b
         }
     }
     startSearch() {
-        this.setState({ modal: true })
+        this.props.switchMode(true)
+    }
+    stopSearch() {
+        this.props.switchMode(false)
+        this.setState({ results: [] })
     }
     render() {
-        const { results, modal, criteria } = this.state
-        const Common = <div className="search">
-            <input autoFocus={modal ? true : false} type="text" placeholder="field1=RegExp\&field2=RegExp..." onInput={ev => this.realTimeResult(ev)} onClick={() => this.startSearch()} />
-            <span>Search</span>
+        const { results } = this.state
+        return <div className="search">
+            <div className="searchbar">
+            <input type="text" placeholder="field1=RegExp\&field2=RegExp..."
+                onInput={ev => this.realTimeResult(ev)} onClick={() => this.startSearch()}
+                onBlur={() => this.stopSearch()} />
+                <img src="https://www.rbcroyalbank.com/dvl/v0.1/assets/images/ui/ui-search-thin-blue.svg" alt="Search" />
+            </div>
             <div className="results">
-                {modal && results.map((result, i) => <News {...result} key={i} />)}
+                {results.map((result, i) => <News {...result} key={i} />)}
             </div>
         </div>
-
-        return modal ?
-            <Modal exit={() => this.setState({ modal: false })}>
-                {Common}
-            </Modal > :
-            Common
     }
 }
+
 export default class KB extends Component<any, any>{
-    state = { projects: store.getState().knowledgebase.slice(0, 10) }
+    state = { projects: store.getState().knowledgebase.slice(0, 10), searching: false }
     componentDidMount() {
         this.componentWillUnmount = store.subscribe(() => {
             this.setState({ projects: store.getState().knowledgebase.slice(0, 10) })
@@ -74,13 +76,13 @@ export default class KB extends Component<any, any>{
     }
 
     render() {
-        const { projects } = this.state
+        const { projects, searching } = this.state
         return <div className="news">
             <h1>What's up</h1>
-            <Search projects={projects} />
-            <div>
+            <Search projects={projects} switchMode={(searching) => this.setState({ searching })} />
+            {!searching && <div>
                 {projects.map((item, i) => <News {...item} key={i} />)}
-            </div>
+            </div>}
         </div>
     }
 }

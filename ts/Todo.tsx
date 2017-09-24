@@ -43,13 +43,13 @@ class Todoitem extends Component<{ item: task }, any>{
         return <div className={"item" + (item.completed ? " completed" : "")}
             onDragOver={ev => this.over(ev)}
             onDrop={(ev) => this.drop(ev)}>
+            {item.completed && <img className="dragger" src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-256.png"
+                onDragStart={(ev) => this.pickup(ev)}
+            ></img>}
             <input type="checkbox" name={item.title} checked={item.completed} onClick={ev => this.onCheck(ev)} />
             <p contentEditable onKeyUp={(ev) => this.submitEdit(ev)}>{item.title}</p>
-            <button onClick={() => this.addNote()}>Note</button>
-            <button onClick={() => this.remove()}>Remove</button>
-            <img className="dragger" src="http://www.iconninja.com/files/741/109/210/tree-icon.png"
-                onDragStart={(ev) => this.pickup(ev)}
-            ></img>
+            <i onClick={() => this.addNote()}>📄</i>
+            <i onClick={() => this.remove()}>🗑</i>
         </div>
     }
 }
@@ -80,7 +80,7 @@ class TodoList extends Component<any, any> {
     render() {
         const { children } = this.state
         return <div>
-            <input type="text" onInput={(ev) => this.typingNewItem(ev)} onKeyUp={ev => this.enter(ev)} placeholder="Add an item" />
+            <input className="additem" type="text" onInput={(ev) => this.typingNewItem(ev)} onKeyUp={ev => this.enter(ev)} placeholder="Add an item" />
             {children.map(item => <Todoitem item={item} key={item.title} />)}
         </div>
     }
@@ -98,11 +98,10 @@ export default class Todo extends PureComponent<any, task>{
         }
     }
     render() {
-        const { author, children, title } = this.state
+        const { children, title } = this.state
         return <div className="todolists">
-            <Author author={author} />
+            <i onClick={() => this.projectNote()}>📄</i>
             <h1>{title}</h1>
-            <button onClick={() => this.projectNote()}>Notes</button>
             <TodoList children={children} />
         </div>
     }

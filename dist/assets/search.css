@@ -1,0 +1,14 @@
+.searchbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .searchbar img {
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
+    transition: all 0.3s ease; }
+  .searchbar:hover img {
+    width: 0;
+    margin: 0; }
+
+/*# sourceMappingURL=search.css.map */

@@ -1,0 +1,25 @@
+@import "colors.scss";
+.opportunities{
+        text-align: center;
+}
+.interestingcontributors{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    >h2{
+        width:100%;
+    }
+    .authordetail{
+        border-radius: 1rem;
+        overflow: auto;
+        margin: 1rem;
+        a{
+            margin: 1rem 0;
+        }
+        border:1px solid $focus-blue-dark;
+        padding: 0 0 1rem 0;
+    }
+    p{
+        width: 100%;
+    }
+}

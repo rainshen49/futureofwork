@@ -16,7 +16,7 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-    project: newProject("Make waffle", "Team Remi"),
+    project: newProject("Make waffle", "Lingkai Shen"),
     currentAuthor: {
         tags: ['cook', 'react'],
         email: "slk49@live.cn",
@@ -38,6 +38,8 @@ const initialState: StoreState = {
         }
     ]
 }
+
+addChild(initialState.project,newProject("Buy everyting",initialState.currentAuthor.name))
 
 function reducer(prevState: StoreState = initialState, action: { [any: string]: any }) {
     const state: StoreState = prevState
@@ -102,7 +104,7 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
         case "publish": {
             state.knowledgebase.push(state.project)
             // add that tag to the author as well
-            const author = state.interestingAuthors.filter(({ name }) => name === state.project.author)[0]
+            const author = state.currentAuthor
             author.tags.push(...project.tags)
             author.tags = Array.from(new Set(author.tags))
             break;

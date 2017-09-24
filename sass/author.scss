@@ -1,0 +1,38 @@
+@import "colors.scss";
+.tag{
+    margin: 1rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+}
+.tag.hot{
+    background-color: $clr-leftnav-child-border-active;
+}
+.author{
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: calc(var(--nav-height) - 0.5rem);
+    height: calc(var(--nav-height) - 0.5rem);
+    line-height: calc(var(--nav-height) - 1.5rem);
+    text-align: center;
+    background-color: white;
+    color:$focus-blue-dark;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.author:hover:not(:active){
+    cursor: pointer;
+    border-radius: 30%;
+}
+.authordetail{
+    color:black;
+    h1{
+        color:white;
+        background-color: $focus-blue-dark;
+        margin: 0 0 1rem 0;
+        padding:1rem 2rem;
+    }
+    a{
+        display: block;
+    }
+}

@@ -1,0 +1,21 @@
+.opportunities {
+  text-align: center; }
+
+.interestingcontributors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .interestingcontributors > h2 {
+    width: 100%; }
+  .interestingcontributors .authordetail {
+    border-radius: 1rem;
+    overflow: auto;
+    margin: 1rem;
+    border: 1px solid #003598;
+    padding: 0 0 1rem 0; }
+    .interestingcontributors .authordetail a {
+      margin: 1rem 0; }
+  .interestingcontributors p {
+    width: 100%; }
+
+/*# sourceMappingURL=opportunity.css.map */

@@ -5,14 +5,17 @@
 @import "modal.scss";
 @import "todo.scss";
 @import "graph.scss";
+@import "search.scss";
+@import "opportunity.scss";
 // @import 'mixins.scss';
 // @import 'reset.scss';
 
 // dev only
 
 * {
-    box-shadow: 0 0 2px 0 black;
-    -webkit-overflow-scrolling: touch
+    // box-shadow: 0 0 2px 0 black;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
 }
 html{
     font-family: $primary-font;
@@ -24,11 +27,12 @@ html,body,#app, #app>div{
     padding: 0;
 }
 #app{
-    --nav-height:3rem;
+    --nav-height: 3.12rem;
 }
 main{
     display: flex;
     height: calc(100% - var(--nav-height));
+    padding: 1rem;
     >div{
         // child fill the parent
         flex:1;
@@ -37,11 +41,54 @@ main{
 }
 nav{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     height:var(--nav-height);
+    background-color: $clr-brand-blue;
     >a{
         flex: 1;
         text-align: center;
         line-height: var(--nav-height);
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s ease;
     }
+    .author{
+        order:2
+    }
+    a:nth-child(2){
+        order:0
+    }
+    a:nth-child(3){
+        order:1
+    }
+    a:nth-child(4){
+        order:3
+    }
+    a:nth-child(5){
+        order:4
+    }
+    
+    >a.current, >a:hover:not(:active){
+        border-bottom: 0.19rem solid $clr-brand-yellow;
+    }
+}
+i{
+    font-style:normal;    
+}
+input[type="text"]{
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid $clr-table-border;
+    outline: 0;
+    border-collapse: collapse;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+    font-size: 1rem;
+    &:focus{
+        box-shadow: inset 0 0 0 1px #006ac3;
+        border: 1px solid #006ac3;
+    }
+}
+button{
+    transition: all 0.3s ease;
 }

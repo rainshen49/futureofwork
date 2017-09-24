@@ -79,10 +79,10 @@ export class Project extends Component<task, any> {
         const { title, author, children, note, tags } = this.props
         const { published } = this.state
         return <div className="project task">
-            <h2>{title}</h2>
-            <button onClick={() => this.publish()} disabled={published}>{published ? "✔" : "⬆"}</button>
-            <button>⬇</button>
+            <h1>{title}</h1>
             <Author author={author} />
+            <button className="primary" onClick={() => this.publish()} disabled={published}>{published ? "Done ✔" : "Publish ⬆"}</button>
+            <button>Download ⬇</button>
             {tags.map(tag => <Tag tag={tag} key={tag} />)}
             <input type="text" name="newtag" placeholder="new tag" onKeyUp={(ev) => this.addTag(ev)} />
             <p>{note}</p>

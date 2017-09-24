@@ -1,7 +1,34 @@
 .item.completed {
   opacity: 0.4; }
 
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  box-shadow: 0 0 1px 1px #003598;
+  margin: 0.5rem 2px; }
+  .item > * {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    margin: 0 0.5rem; }
+  .item input[type="checkbox"] {
+    font-size: 1.5rem; }
+  .item p {
+    width: 100%; }
+  .item i {
+    cursor: pointer; }
+
 .dragger {
   cursor: move; }
+
+.todolists > i {
+  margin: auto 1rem auto auto; }
+  .todolists > i:hover {
+    cursor: pointer; }
+.todolists > h1 {
+  display: inline-block;
+  margin: 0;
+  padding: 0; }
 
 /*# sourceMappingURL=todo.css.map */
