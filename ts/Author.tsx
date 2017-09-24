@@ -6,7 +6,7 @@ import { Modal } from './Modal'
 import { searchTop } from './searcher';
 // renders a nice block of the author's initials
 export function DetailAuthor({ author }) {
-    const { tags, email } = store.getState().interestingAuthors
+    const { tags, email } = [...store.getState().interestingAuthors, store.getState().currentAuthor]
         .filter(({ name }) => name === author)[0]
     return <div className="detail author">
         <h1>{author}</h1>

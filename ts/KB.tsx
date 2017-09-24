@@ -19,13 +19,11 @@ export class News extends PureComponent<task, { expand: boolean }>{
         const { title, author, tags, children, note } = this.props
         const { expand } = this.state
         return <div className={expand ? "newsdetail" : "newsbrief"} onClick={() => this.maybeExpand(!expand)}>
-            <h3>{title}</h3>
-            <Author author={author} />
-            {tags.map(tag => <Tag tag={tag} key={tag} />)}
-            <p>{note}</p>
-            <div className="graphwrapper">
-                {expand && <Project {...this.props} />}
-            </div>
+            {!expand && <h3>{title}</h3>}
+            {!expand && <Author author={author} />}
+            {!expand && tags.map(tag => <Tag tag={tag} key={tag} />)}
+            {!expand && <p>{note}</p>}
+            {expand && <Project {...this.props} />}
         </div>
     }
     maybeExpand(really) {

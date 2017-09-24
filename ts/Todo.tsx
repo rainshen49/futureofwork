@@ -32,6 +32,12 @@ class Todoitem extends Component<{ item: task }, any>{
         const title = ev.dataTransfer.getData("text")
         store.dispatch({ ...actions.subItem, child: title, parent: this.props.item.title })
     }
+    addNote() {
+        const note = prompt("What is your note?", this.props.item.note)
+        if (note) {
+            store.dispatch({ ...actions.addNote, title: this.props.item.title, note })
+        }
+    }
     render() {
         const { item } = this.props
         return <div className={"item" + (item.completed ? " completed" : "")}
@@ -39,7 +45,7 @@ class Todoitem extends Component<{ item: task }, any>{
             onDrop={(ev) => this.drop(ev)}>
             <input type="checkbox" name={item.title} checked={item.completed} onClick={ev => this.onCheck(ev)} />
             <p contentEditable onKeyUp={(ev) => this.submitEdit(ev)}>{item.title}</p>
-            <button>Note</button>
+            <button onClick={() => this.addNote()}>Note</button>
             <button onClick={() => this.remove()}>Remove</button>
             <img className="dragger" src="http://www.iconninja.com/files/741/109/210/tree-icon.png"
                 onDragStart={(ev) => this.pickup(ev)}
@@ -85,12 +91,18 @@ export default class Todo extends PureComponent<any, task>{
     componentDidMount() {
         this.componentWillUnmount = store.subscribe(() => this.setState(store.getState().project))
     }
+    projectNote() {
+        const note = prompt("What is your note?", this.state.note)
+        if (note) {
+            store.dispatch({ ...actions.addProjNotes, note })
+        }
+    }
     render() {
         const { author, children, title } = this.state
         return <div className="todolists">
             <Author author={author} />
             <h1>{title}</h1>
-            <button>Notes</button>
+            <button onClick={() => this.projectNote()}>Notes</button>
             <TodoList children={children} />
         </div>
     }

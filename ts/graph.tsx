@@ -63,6 +63,7 @@ class Task extends PureComponent<{ tsk: task }, { expanded: boolean }>{
 }
 
 export class Project extends Component<task, any> {
+    state = { published: false }
     addTag(ev) {
         if (ev.key === "Enter") {
             const newtag = ev.target.value
@@ -72,18 +73,20 @@ export class Project extends Component<task, any> {
     }
     publish() {
         store.dispatch(actions.publish)
+        this.setState({ published: true })
     }
     render() {
         const { title, author, children, note, tags } = this.props
+        const { published } = this.state
         return <div className="project task">
             <h2>{title}</h2>
-            <button onClick={() => this.publish()}>Publish</button>
-            <button>Save</button>
+            <button onClick={() => this.publish()} disabled={published}>{published ? "✔" : "⬆"}</button>
+            <button>⬇</button>
             <Author author={author} />
             {tags.map(tag => <Tag tag={tag} key={tag} />)}
             <input type="text" name="newtag" placeholder="new tag" onKeyUp={(ev) => this.addTag(ev)} />
-            {children.map(child => <Task tsk={child} key={child.title} />)}
             <p>{note}</p>
+            {children.map(child => <Task tsk={child} key={child.title} />)}
         </div>
     }
 }

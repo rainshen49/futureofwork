@@ -18,6 +18,7 @@ KB:
     - list of KB with brief description v
 - detail view:
     - project graph v
+- import
 
 Profile generator
 - add tags and projects to an author profile v

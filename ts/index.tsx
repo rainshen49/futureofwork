@@ -9,7 +9,7 @@ import { Overview } from './Graph'
 
 class App extends PureComponent<{ items: { [any: string]: any } }, any> {
     // default render the news page
-    state = { Page: this.props.items.Opportunity }
+    state = { Page: this.props.items.Project }
     render() {
         const { items } = this.props
         const { Page } = this.state
@@ -28,4 +28,4 @@ class App extends PureComponent<{ items: { [any: string]: any } }, any> {
     }
 }
 
-render(<App items={{ Project: Todo,Overview, Explore: KB, Opportunity  }} />, $('#app'))
+render(<App items={{ Project: Todo, Overview, Explore: KB, Opportunity }} />, $('#app'))

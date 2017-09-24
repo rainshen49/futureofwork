@@ -29,6 +29,6 @@ export function parse(querystring) {
                 matcher: new RegExp(q[1].trim())
             }))
     } catch (e) {
-        return []
+        return [{ key: "title", matcher: new RegExp(querystring) }]
     }
 }

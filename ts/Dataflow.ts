@@ -1,6 +1,6 @@
 import { Author } from './Author';
 import { createStore } from 'redux'
-import { newProject, task, complete, cancel, removeChild, addChild, addTag } from './Graph'
+import { newProject, task, complete, cancel, removeChild, addChild, addTag, setNote } from './Graph'
 
 interface contributer {
     tags: string[],
@@ -16,13 +16,15 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-    project: newProject("Make pancake", "Team Remi"),
+    project: newProject("Make waffle", "Team Remi"),
     currentAuthor: {
         tags: ['cook', 'react'],
         email: "slk49@live.cn",
-        name: "Team Remi"
+        name: "Lingkai Shen"
     },
-    knowledgebase: [],
+    knowledgebase: [
+        { "title": "Make waffle", "author": "Team Remi", "children": [{ "title": "pour onto the waffle iron, wait 2min", "author": "Team Remi", "children": [{ "title": "mix flour, baking powder, eggs etc", "author": "Team Remi", "children": [], "note": "", "completed": true, "tags": [] }, { "title": "whip cream", "author": "Team Remi", "children": [], "note": "Use an electronic whisk to whip 35% cream until it becomes puffy", "completed": true, "tags": [] }], "note": "", "completed": true, "tags": [] }], "note": "Need electronic whisk and waffle iron", "completed": false, "tags": ["breakfast", "react"] }
+    ],
     interestingAuthors: [
         {
             tags: ['cook', 'react'],
@@ -37,17 +39,12 @@ const initialState: StoreState = {
     ]
 }
 
-initialState.project.children = [newProject("Whip cream", initialState.project.author), newProject("Whip more cream", initialState.project.author)]
-addTag(initialState.project, "react")
-addTag(initialState.project, "oven")
-
-
 function reducer(prevState: StoreState = initialState, action: { [any: string]: any }) {
     const state: StoreState = prevState
     const project = state.project
     switch (action.type) {
         case "addItem": {
-            project.children.push(newProject(action.title, project.author))
+            addChild(project, newProject(action.title, project.author))
             break;
         }
         case "renameItem": {
@@ -60,7 +57,6 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
             break;
         }
         case "checkItem": {
-            // console.log('action checkitem',action)
             const { title, done } = action
             project.children.forEach(child => {
                 if (child.title === title) {
@@ -75,14 +71,15 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
             let target;
             project.children.forEach(child => {
                 if (child.title === title) {
+                    // find that child
                     target = child
                 }
             })
-            console.log(title, 'target', target)
             removeChild(project, target)
             break;
         }
         case "subItem": {
+            // make an item a dependency of another
             const { parent, child } = action
             if (parent === child) throw "cannot be the same item"
             let parentitem, childitem;
@@ -104,18 +101,33 @@ function reducer(prevState: StoreState = initialState, action: { [any: string]: 
         }
         case "publish": {
             state.knowledgebase.push(state.project)
+            // add that tag to the author as well
             const author = state.interestingAuthors.filter(({ name }) => name === state.project.author)[0]
             author.tags.push(...project.tags)
             author.tags = Array.from(new Set(author.tags))
+            break;
+        }
+        case "addProjNotes": {
+            setNote(project, action.note)
+            break;
+        }
+        case "addNote": {
+            const { title, note } = action
+            project.children.forEach(ch => {
+                if (ch.title === title) {
+                    setNote(ch, note)
+                }
+            })
             break;
         }
     }
     return state
 }
 
-const projectActions = {
+export const actions = {
     "addItem": {
-        type: "addItem"
+        type: "addItem",
+        title: ""
     },
     "renameItem": {
         type: "renameItem"
@@ -140,12 +152,17 @@ const projectActions = {
     },
     "publish": {
         type: "publish",
+    },
+    "addProjNotes": {
+        type: "addProjNotes"
+    },
+    "addNote": {
+        type: "addNote",
+        title: "",
+        note: ""
     }
 }
 
-export const actions = {
-    ...projectActions
-}
 
 export const store = createStore(reducer)
 store.subscribe(() => console.log(store.getState()))
