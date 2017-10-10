@@ -16,7 +16,7 @@ interface StoreState {
 }
 
 const initialState: StoreState = {
-    project: newProject("Make Green Tea Frappacino", "Lingkai Shen"),
+    project: newProject("Sample Project: Make Green Tea Frappacino", "Lingkai Shen"),
     currentAuthor: {
         tags: ['cook', 'react'],
         email: "slk49@live.cn",
